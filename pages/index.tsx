@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import styles from '../styles/Home.module.css';
+import Main from '../components/Main';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,32 +15,13 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className={`container mx-auto`}>
-        <div className={styles.cross_bg}></div>
-        <div className='flex flex-col items-center justify-center min-h-screen py-2'>
-          <div className='bg-white w-3/4 h-1/2'>
-          <h1 className='text-6xl font-bold'>
-            Welcome to <a href='https://nextjs.org'>Next.js!</a>
-          </h1>
-          <p className='mt-3 text-2xl'>
-            Get started by editing{' '}
-            <code className='p-3 font-mono text-lg bg-gray-100 rounded-md'>pages/index.tsx</code>
-          </p>
-          <div className='flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full'>
-            <a
-              href='https://nextjs.org/docs'
-              className='p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600'
-            >
-              <h3 className='text-2xl font-bold'>Documentation &rarr;</h3>
-              <p className='mt-4 text-xl'>
-                Find in-depth information about Next.js features and API.
-              </p>
-            </a>
+      <main className={`h-screen flex items-center flex-wrap justify-center ${inter.className}`}>
+        <div className={`w-full h-full ${styles.cross_bg}`}></div>
+          <div className='font-bold'>
+            <h1 className='text-4xl text-center py-7'>Material Tailwind</h1>
+          </div>
+          <Main/>
 
-          </div>
-          
-          </div>
-        </div>
       </main>
     </>
   );

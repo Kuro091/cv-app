@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import styles from '../styles/Home.module.css';
 import Main from '../components/Main';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,11 +19,9 @@ export default function Home() {
       </Head>
       <main className={`h-screen flex items-center flex-wrap justify-center ${inter.className}`}>
         <div className={`w-full h-full ${styles.cross_bg}`}></div>
-          <div className='font-bold'>
-            <h1 className='text-4xl text-center py-7'>Material Tailwind</h1>
-          </div>
-          <Main/>
-
+        <Header />
+        <Main />
+        <Footer />
       </main>
     </>
   );

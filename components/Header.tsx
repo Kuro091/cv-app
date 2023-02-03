@@ -14,7 +14,13 @@ const Header = () => {
   return (
     <Card className='w-96'>
       <CardHeader floated={false} className='h-80 flex flex-col justify-center'>
-        <img alt='avatar' src='/images/18h.gif' />
+        <Image
+          alt='avatar'
+          width='384'
+          height='320'
+          priority={true}
+          src='https://purr.objects-us-east-1.dream.io/i/gRzRv.png'
+        />
       </CardHeader>
       <CardBody className='text-center'>
         <h1 className='text-2xl text-gray-800 font-bold'>

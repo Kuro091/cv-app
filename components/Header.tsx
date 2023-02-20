@@ -11,8 +11,10 @@ import Image from 'next/image';
 import Typewriter from 'typewriter-effect';
 
 const Header = () => {
+  const testEnv = process.env.NEXT_PUBLIC_THE_SAME_KEY;
   return (
     <Card className='w-96'>
+      {testEnv && <h1>{testEnv}</h1>}
       <CardHeader floated={false} className='h-80 flex flex-col justify-center'>
         <Image
           alt='avatar'

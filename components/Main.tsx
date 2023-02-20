@@ -23,7 +23,7 @@ export default function Main() {
   ];
 
   return (
-    <div className='w-full m-5 h-5/6 bg-white rounded-md'>
+    <div className='w-[80%] m-5 h-5/6 bg-white rounded-md'>
       <Tabs value='summary'>
         <TabsHeader>
           {data.map(({ label, value }) => (

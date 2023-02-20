@@ -17,7 +17,9 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className={`h-screen flex items-center flex-wrap justify-center ${inter.className}`}>
+      <main
+        className={`px-20 h-screen min-w-screen flex flex-col items-center flex-wrap justify-center ${inter.className}`}
+      >
         <div className={`w-full h-full ${styles.cross_bg}`}></div>
         <Header />
         <Main />

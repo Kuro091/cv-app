@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css';
 import Main from '../components/Main';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Background from '../components/Background';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,13 +18,22 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main
-        className={`px-20 h-screen min-w-screen flex flex-col items-center flex-wrap justify-center ${inter.className}`}
-      >
-        <div className={`w-full h-full ${styles.cross_bg}`}></div>
-        <Header />
-        <Main />
-        <Footer />
+      <main>
+        <section
+          className={`text-white px-20 h-screen w-[1fr] flex flex-row items-center flex-wrap justify-center ${inter.className}`}
+        >
+          <Header />
+          <Header />
+          <Header />
+          <Header />
+          <Header />
+          <Header />
+          <Header />
+          <Header />
+          <Background />
+        </section>
+        {/* <Main /> */}
+        {/* <Footer /> */}
       </main>
     </>
   );

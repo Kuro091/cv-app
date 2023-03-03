@@ -35,7 +35,7 @@ const AnimatedText: FC<AnimatedTextProps> = ({ text }) => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 1,
+        duration: 0.5,
         ease: 'easeInOut',
       },
     },
@@ -43,12 +43,12 @@ const AnimatedText: FC<AnimatedTextProps> = ({ text }) => {
 
   return (
     <>
-      <div className='text-5xl font-bold text-center text-white'>
+      <div className='font-bold text-white'>
         {text.split(' ').map((word, index) => (
           <motion.h1
             key={index}
             ref={ref}
-            className='inline-block whitespace-nowrap mr-2 text-8xl'
+            className='inline-block text-center whitespace-nowrap mr-2 ml-5 text-5xl lg:text-8xl'
             variants={wordVariants}
             initial='hidden'
             animate={controls}
@@ -58,7 +58,7 @@ const AnimatedText: FC<AnimatedTextProps> = ({ text }) => {
             }}
           >
             {word.split('').map((char, index) => (
-              <motion.span key={index} className='inline-block' variants={characterVariants}>
+              <motion.span key={index} className='inline-block ' variants={characterVariants}>
                 {char}
               </motion.span>
             ))}

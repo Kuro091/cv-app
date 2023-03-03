@@ -1,0 +1,1 @@
+export { default as AnimatedMenu } from './AnimatedMenu';

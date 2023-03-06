@@ -5,7 +5,7 @@ const Header = () => {
         <div className='flex gap-20 pl-20 z-50'>
           {/* Icon */}
           <div className='w-[100px] flex items-center justify-center text-2xl font-extrabold bg-white text-black'>
-            ICON
+            MINHLC
           </div>
           {/* <nav className='hidden lg:flex items-center'>
             <ul className='flex gap-10 text-2xl font-extrabold [&>*]:p-3 cursor-pointer'>

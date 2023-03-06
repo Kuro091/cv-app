@@ -43,7 +43,7 @@ const AnimatedText: FC<AnimatedTextProps> = ({ text }) => {
 
   return (
     <>
-      <div className='font-bold text-white'>
+      <div className='font-bold text-white pl-4'>
         {text.split(' ').map((word, index) => (
           <motion.h1
             key={index}

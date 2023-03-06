@@ -1,12 +1,34 @@
+import { AnimatedMenuItems } from './AnimatedComponents/AnimatedMenuItems';
+
+const menuItems = [
+  { name: 'Home', link: '/' },
+  { name: 'About', link: '/about' },
+  { name: 'Projects', link: '/projects' },
+  { name: 'Contact', link: '/contact' },
+];
+
+const contacts = [
+  { name: 'Github', link: '' },
+  { name: 'LinkedIn', link: '' },
+  { name: 'Email', link: '' },
+];
+
 const Navigation = () => {
   return (
     <>
-      <div className='flex flex-col justify-center select-none pt-24 h-full items-center lg:gap-10 text-black text-4xl lg:text-7xl font-extrabold cursor-pointer [&>*]:flex [&>*]:justify-end [&>*]:pr-36 [&>*]:py-10 [&>*]:w-full'>
-        <div className='hover:bg-[#313715] hover:text-[#e2f9b8]'>Home</div>
-        <div className='hover:bg-[#313715] hover:text-[#e2f9b8]'>About</div>
-        <div className='hover:bg-[#313715] hover:text-[#e2f9b8]'>Projects</div>
-        <div className='hover:bg-[#313715] hover:text-[#e2f9b8]'>Contact</div>
-      </div>
+      <section className='grid lg:grid-cols-2 grid-flow-row h-full'>
+        <div className=' text-indigo-900 self-end pl-20 pb-20'>
+          <p className='text-5xl font-extrabold'>MINHLC</p>
+          <p className='text-2xl font-extrabold'>Frontend Developer</p>
+          <p className='text-xl font-semibold mb-5'>(+84) 88 600 2391</p>
+          <div className='flex gap-x-3'>
+            {contacts.map((contact, index) => (
+              <div key={contact.name} className=' w-10 h-10 bg-red-100'></div>
+            ))}
+          </div>
+        </div>
+        <AnimatedMenuItems items={menuItems} />
+      </section>
     </>
   );
 };

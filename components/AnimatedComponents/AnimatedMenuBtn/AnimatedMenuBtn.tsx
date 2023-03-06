@@ -1,7 +1,12 @@
-import { MouseEventHandler } from 'react';
-import { motion } from 'framer-motion';
+import { MouseEventHandler, FC, SVGAttributes } from 'react';
+import { motion, SVGMotionProps } from 'framer-motion';
 
-const Path = ({ strokeColor = 'hsl(0, 100%, 100%)', ...rest }: { strokeColor?: string }) => {
+const Path = ({
+  strokeColor = 'hsl(0, 100%, 100%)',
+  ...rest
+}: {
+  strokeColor?: string;
+} & SVGMotionProps<SVGPathElement>) => {
   return (
     <motion.path
       fill='transparent'

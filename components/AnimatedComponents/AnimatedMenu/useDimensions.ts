@@ -1,9 +1,13 @@
-import { RefObject, useState, useLayoutEffect } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 
 export const useDimensions = (ref: RefObject<any>) => {
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  useLayoutEffect(() => {
-    setDimensions(ref.current.getBoundingClientRect().toJSON());
+  const dimensions = useRef({ width: 0, height: 0 });
+
+  useEffect(() => {
+    dimensions.current.width = ref.current.offsetWidth;
+    dimensions.current.height = ref.current.offsetHeight;
   }, [ref]);
-  return dimensions;
+
+  return dimensions.current;
+
 }

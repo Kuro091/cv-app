@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useColorsStore } from '../../hooks/useColors';
 
 export interface MenuItem {
   name: string;
@@ -36,16 +37,25 @@ const menuItemVariants = {
   },
 };
 
-const MenuItem = ({ item }: { item: MenuItem }) => {
+const MenuItem = ({ item, index }: { item: MenuItem; index: number }) => {
+  const colorStore = useColorsStore();
+  const itemColor = colorStore.colors[index];
+
+  const inTextColor = `hover:text-white text-[${itemColor.primary}]`;
+
+  const inBgColor = `hover:bg-[${itemColor.secondary}]`;
+  const className = [
+    `flex justify-end lg:w-[25rem] pr-10 lg:mr-5 mb-5 py-10 w-full rounded-3xl`,
+    inTextColor,
+    inBgColor,
+  ].join(' ');
+
   return (
-    <motion.li
-      variants={menuItemVariants}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.95 }}
-      className='hover:bg-[#313715] hover:text-[#e2f9b8] flex justify-end items-center pr-10 lg:pr-36 py-10 w-full'
-    >
-      <Link href={item.link}>{item.name}</Link>
-    </motion.li>
+    <Link href={item.link} className={className} onClick={() => colorStore.setChosenColor(index)}>
+      <motion.li variants={menuItemVariants} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+        {item.name}
+      </motion.li>
+    </Link>
   );
 };
 
@@ -53,11 +63,11 @@ const AnimatedMenuItems = ({ items }: AnimatedMenuItemsProps) => {
   return (
     <motion.ul
       variants={variants}
-      className='flex flex-col justify-center select-none px-20 h-full items-center lg:gap-y-5 text-black text-5xl lg:text-7xl font-extrabold cursor-pointer '
+      className='flex flex-col justify-center select-none px-20 h-full items-end lg:gap-y-5 text-5xl lg:text-7xl font-extrabold cursor-pointer '
     >
-      {items.map((item, index) => (
-        <MenuItem key={index} item={item} />
-      ))}
+      {items.map((item, index) => {
+        return <MenuItem item={item} key={item.name} index={index} />;
+      })}
     </motion.ul>
   );
 };

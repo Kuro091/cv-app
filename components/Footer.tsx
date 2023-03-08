@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <section className='w-full h-8 flex justify-center items-end'>
-      <div className='text-sm font-semibold'>Copyright something</div>
+    <section className='bottom-0 w-full flex justify-center items-end py-5 border-t-2 border-t-[#D16014] z-0'>
+      <div className='text-xs font-semibold'>Copyright 2023 ©Kuro091</div>
     </section>
   );
 };

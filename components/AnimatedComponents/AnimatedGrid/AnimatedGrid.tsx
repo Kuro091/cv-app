@@ -1,5 +1,5 @@
 import { useMotionValue, motion, useSpring } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Square from './Square';
 import { GAP, GRID, SQUARE_SIZE } from './gridconfig';
 

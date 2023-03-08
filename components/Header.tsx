@@ -1,9 +1,11 @@
+import { AnimatedMenu } from './AnimatedComponents/AnimatedMenu';
+import Navigation from './Navigation';
+
 const Header = () => {
   return (
     <>
       <section className='fixed top-0 w-full min-h-[5rem] pt-10'>
         <div className='flex gap-20 pl-20 z-50'>
-          {/* Icon */}
           <div className='w-[100px] flex items-center justify-center text-2xl font-extrabold bg-white text-black'>
             MINHLC
           </div>
@@ -17,6 +19,7 @@ const Header = () => {
           </nav> */}
         </div>
       </section>
+      <AnimatedMenu className='fixed top-0 z-[5]' renderMenu={() => <Navigation />} />
     </>
   );
 };

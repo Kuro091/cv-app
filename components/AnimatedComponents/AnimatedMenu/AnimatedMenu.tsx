@@ -1,8 +1,6 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useCycle, motion } from 'framer-motion';
-import AnimatedGrid from '../AnimatedGrid/AnimatedGrid';
 import AnimatedMenuBtn from '../AnimatedMenuBtn/AnimatedMenuBtn';
-import { useObserver } from './useObserver';
 
 interface AnimatedMenuProps {
   renderMenu?: () => JSX.Element;
@@ -16,23 +14,25 @@ const AnimatedMenu = ({ renderMenu, className }: AnimatedMenuProps) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const sidebar = {
-    open: (height = 2000) => ({
-      clipPath: `circle(${height}rem at right top)`,
+    open: () => ({
+      clipPath: `inset(0 0 0 0 round 5rem)`,
       transition: {
         type: 'spring',
-        stiffness: 20,
-        restDelta: 2,
+        duration: 0.2,
+        bounce: 0.5,
       },
     }),
-    closed: {
-      clipPath: `circle(0.1px at right top)`,
+    closed: () => ({
+      clipPath: `inset(0px 0px 0px 100% round 2rem)`,
       transition: {
         type: 'spring',
-        stiffness: 400,
-        damping: 40,
+        duration: 0.5,
+        bounce: 0.2,
       },
-    },
+    }),
   };
+
+  // const { width } = useDimensions(containerRef);
 
   return (
     <motion.nav

@@ -1,25 +1,27 @@
+import Link from 'next/link';
 import { AnimatedMenu } from './AnimatedComponents/AnimatedMenu';
 import Navigation from './Navigation';
+import { useClientStore } from './hooks/useClientStore';
 
 const Header = () => {
+  const { isMenuOpen } = useClientStore();
+  const zIndex = isMenuOpen ? 'z-[-2]' : 'z-[11]';
+  console.log('isMenuOpen ', isMenuOpen);
   return (
     <>
-      <section className='fixed top-0 w-full min-h-[5rem] pt-10'>
-        <div className='flex gap-20 pl-20 z-50'>
-          <div className='w-[100px] flex items-center justify-center text-2xl font-extrabold bg-white text-black'>
-            MINHLC
-          </div>
-          {/* <nav className='hidden lg:flex items-center'>
-            <ul className='flex gap-10 text-2xl font-extrabold [&>*]:p-3 cursor-pointer'>
-              <li className='hover:bg-[#313715] hover:text-[#e2f9b8]'>Home</li>
-              <li className='hover:bg-[#313715] hover:text-[#e2f9b8]'>About</li>
-              <li className='hover:bg-[#313715] hover:text-[#e2f9b8]'>Projects</li>
-              <li className='hover:bg-[#313715] hover:text-[#e2f9b8]'>Contact</li>
-            </ul>
-          </nav> */}
+      <section className={`fixed top-0 w-[calc(100%-10%)] min-h-[5rem] pt-10 ${zIndex}`}>
+        <div className='flex gap-20 pl-20'>
+          <Link href='/'>
+            <div className='w-[100px] flex items-center justify-center text-2xl font-extrabold bg-white text-black '>
+              MINHLC
+            </div>
+          </Link>
         </div>
       </section>
-      <AnimatedMenu className='fixed top-0 z-[5]' renderMenu={() => <Navigation />} />
+      <AnimatedMenu
+        className='fixed top-0 z-10'
+        renderMenu={({ onItemClick }) => <Navigation onItemClick={onItemClick} />}
+      />
     </>
   );
 };

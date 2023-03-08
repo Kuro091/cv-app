@@ -1,4 +1,5 @@
-import { AnimatedMenuItems } from './AnimatedComponents/AnimatedMenuItems';
+import { AnimatedMenuItems } from './AnimatedComponents/AnimatedMenu/AnimatedMenuItems';
+import { FC } from 'react';
 
 const menuItems = [
   { name: 'Home', link: '/' },
@@ -12,11 +13,15 @@ const contacts = [
   { name: 'Email', link: '' },
 ];
 
-const Navigation = () => {
+interface NavigationProps {
+  onItemClick?: () => void;
+}
+
+const Navigation: FC<NavigationProps> = ({ onItemClick }) => {
   return (
     <>
       <section className='grid lg:grid-cols-2 grid-flow-row h-full'>
-        <div className=' text-indigo-900 self-end lg:p-20 p-10'>
+        <div className=' text-indigo-900 self-end justify-self-center lg:justify-self-start lg:p-20 p-10'>
           <p className='text-5xl font-extrabold'>MINHLC</p>
           <p className='text-2xl font-extrabold'>Frontend Developer</p>
           <p className='text-xl font-semibold mb-5'>(+84) 88 600 2391</p>
@@ -26,7 +31,7 @@ const Navigation = () => {
             ))}
           </div>
         </div>
-        <AnimatedMenuItems items={menuItems} />
+        <AnimatedMenuItems items={menuItems} onItemClick={onItemClick} />
       </section>
     </>
   );

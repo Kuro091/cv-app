@@ -5,23 +5,19 @@ import { useClientStore } from './hooks/useClientStore';
 
 const Header = () => {
   const { isMenuOpen } = useClientStore();
-  const zIndex = isMenuOpen ? 'z-[-2]' : 'z-[11]';
-  console.log('isMenuOpen ', isMenuOpen);
+
   return (
     <>
-      <section className={`fixed top-0 w-[calc(100%-10%)] min-h-[5rem] pt-10 ${zIndex}`}>
-        <div className='flex gap-20 pl-20'>
-          <Link href='/'>
-            <div className='w-[100px] flex items-center justify-center text-2xl font-extrabold bg-white text-black '>
-              MINHLC
-            </div>
-          </Link>
-        </div>
+      <section
+        className={`sticky justify-between top-0 flex items-center min-h-[5rem] w-full z-[9]`}
+      >
+        <Link href='/'>
+          <div className='ml-20 w-[100px] flex items-center justify-center text-2xl font-extrabold bg-white text-black z-[99999]'>
+            MINHLC
+          </div>
+        </Link>
+        <AnimatedMenu renderMenu={({ onItemClick }) => <Navigation onItemClick={onItemClick} />} />
       </section>
-      <AnimatedMenu
-        className='fixed top-0 z-10'
-        renderMenu={({ onItemClick }) => <Navigation onItemClick={onItemClick} />}
-      />
     </>
   );
 };

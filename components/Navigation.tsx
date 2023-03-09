@@ -20,8 +20,8 @@ interface NavigationProps {
 const Navigation: FC<NavigationProps> = ({ onItemClick }) => {
   return (
     <>
-      <section className='grid lg:grid-cols-2 grid-flow-row h-full'>
-        <div className=' text-indigo-900 self-end justify-self-center lg:justify-self-start lg:p-20 p-10'>
+      <section className='grid grid-rows-[25rem_1fr] lg:grid-cols-2 lg:grid-flow-row h-full'>
+        <div className=' text-indigo-900 lg:self-start justify-self-start h-fit lg:justify-self-start lg:p-20 p-10'>
           <p className='text-5xl font-extrabold'>MINHLC</p>
           <p className='text-2xl font-extrabold'>Frontend Developer</p>
           <p className='text-xl font-semibold mb-5'>(+84) 88 600 2391</p>

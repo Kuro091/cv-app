@@ -33,29 +33,34 @@ const AnimatedMenu = ({ renderMenu, className }: AnimatedMenuProps) => {
   };
 
   return (
-    <motion.nav
-      className={[className, `w-full h-full`].join(' ')}
-      ref={containerRef}
-      initial={false}
-      animate={isOpen ? 'open' : 'closed'}
-    >
-      <motion.div className='w-full h-full bg-white sticky top-0' variants={sidebar}>
-        {renderMenu &&
-          renderMenu({
-            onItemClick: () => {
-              setIsMenuOpen(false);
-              toggleOpen();
-            },
-          })}
-      </motion.div>
-      <AnimatedMenuBtn
-        onClick={() => {
-          toggleOpen();
-        }}
-        className='absolute right-[2.5%] top-[5%] cursor-pointer'
-        enabled={isOpen}
-      />
-    </motion.nav>
+    <>
+      <motion.nav className='' animate={isOpen ? 'open' : 'closed'} ref={containerRef}>
+        <motion.div
+          className='absolute w-full h-full bg-white top-0'
+          variants={sidebar}
+          initial={false}
+          style={{
+            zIndex: isOpen ? '10' : '-99',
+          }}
+        >
+          {renderMenu &&
+            renderMenu({
+              onItemClick: () => {
+                toggleOpen();
+                setIsMenuOpen(true);
+              },
+            })}
+        </motion.div>
+        <AnimatedMenuBtn
+          onClick={() => {
+            toggleOpen();
+            setIsMenuOpen(isOpen);
+          }}
+          className='absolute right-[5%] top-[25%] cursor-pointer z-[99]'
+          enabled={isOpen}
+        />
+      </motion.nav>
+    </>
   );
 };
 

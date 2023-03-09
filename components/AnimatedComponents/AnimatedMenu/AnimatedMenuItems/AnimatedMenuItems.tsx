@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useColorsStore } from '../../../hooks/useColorsStore';
 import { Color } from '../../../hooks/types';
+import { useColor } from '../../../hooks/useColor';
 
 export interface MenuItem {
   name: string;
@@ -48,25 +48,28 @@ const MenuItem = ({
   color: Color;
   onClick?: () => void;
 }) => {
-  const { colors, setCurrentColor } = useColorsStore();
-  const colorFromStore = colors.find((c) => c.name === color);
-  const colorClassName = [colorFromStore?.hoverClass, colorFromStore?.textClass].join(' ');
-
-  const className = [
-    `flex justify-center lg:self-end lg:justify-end lg:w-[25rem] pl-10 lg:pr-10 lg:mr-5 mb-5 py-10 w-full rounded-3xl`,
-    colorClassName,
-  ].join(' ');
+  const { currentColor, setCurrentColor } = useColor(color);
 
   return (
-    <Link
-      href={item.link}
-      className={className}
-      onClick={() => {
-        setCurrentColor(color);
-        onClick && onClick();
-      }}
-    >
-      <motion.li variants={menuItemVariants} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+    <Link href={item.link}>
+      <motion.li
+        style={{
+          background: '#ffffff',
+          color: currentColor?.dark,
+        }}
+        className='flex justify-end my-10 p-10 pl-40 lg:self-end lg:justify-end lg:w-[25rem] lg:pr-10 lg:mr-5 rounded-3xl'
+        onClick={() => {
+          setCurrentColor(color);
+          onClick && onClick();
+        }}
+        variants={menuItemVariants}
+        whileHover={{
+          scale: 1.1,
+          background: currentColor?.dark,
+          color: '#ffffff',
+        }}
+        whileTap={{ scale: 0.95 }}
+      >
         {item.name}
       </motion.li>
     </Link>
@@ -83,7 +86,7 @@ const AnimatedMenuItems = ({ items, onItemClick }: AnimatedMenuItemsProps) => {
   return (
     <motion.ul
       variants={variants}
-      className='flex flex-col lg:pt-40 select-none px-20 h-full lg:gap-y-5 text-5xl lg:text-7xl font-extrabold cursor-pointer '
+      className='flex flex-col lg:pt-40 select-none px-20 items-end lg:gap-y-5 text-6xl lg:text-7xl font-extrabold cursor-pointer'
     >
       {items.map((item, index) => {
         const color = _colorMap[index as keyof typeof _colorMap];

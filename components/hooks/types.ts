@@ -7,9 +7,11 @@ export enum Color {
 
 export interface ColorRepresentation {
   name: string,
-  hoverClass: string,
-  textClass: string,
-  lightBgClass: string,
-  darkBgClass: string,
-  topBorderClass: string,
+  dark: string,
+  darker: string,
+  darkest: string,
+  light: string,
+  lighter: string,
+  lightest: string,
+  gradient: string,
 }

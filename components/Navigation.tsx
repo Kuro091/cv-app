@@ -1,5 +1,5 @@
 import { AnimatedMenuItems } from './AnimatedComponents/AnimatedMenu/AnimatedMenuItems';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 const menuItems = [
   { name: 'Home', link: '/' },

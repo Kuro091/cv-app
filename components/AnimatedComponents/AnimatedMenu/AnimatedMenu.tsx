@@ -34,14 +34,15 @@ const AnimatedMenu = ({ renderMenu, className }: AnimatedMenuProps) => {
 
   return (
     <>
-      <motion.nav className='' animate={isOpen ? 'open' : 'closed'} ref={containerRef}>
+      <motion.nav
+        className='absolute top-0 w-full h-full'
+        animate={isOpen ? 'open' : 'closed'}
+        ref={containerRef}
+      >
         <motion.div
-          className='absolute w-full h-full bg-white top-0'
+          className='fixed w-full h-full bg-white top-0 z-[2]'
           variants={sidebar}
           initial={false}
-          style={{
-            zIndex: isOpen ? '10' : '-99',
-          }}
         >
           {renderMenu &&
             renderMenu({
@@ -56,7 +57,7 @@ const AnimatedMenu = ({ renderMenu, className }: AnimatedMenuProps) => {
             toggleOpen();
             setIsMenuOpen(isOpen);
           }}
-          className='absolute right-[5%] top-[25%] cursor-pointer z-[99]'
+          className='fixed right-[5%] top-[2%] cursor-pointer z-[99]'
           enabled={isOpen}
         />
       </motion.nav>

@@ -5,7 +5,7 @@ const Footer = () => {
 
   return (
     <section
-      className={`bottom-0 w-full flex justify-center items-end py-5 z-0`}
+      className={`bottom-0 w-full flex justify-center items-end py-5`}
       style={{
         borderTop: '1px solid',
         borderColor: currentColor?.lightest,

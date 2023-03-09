@@ -37,7 +37,7 @@ const Projects = () => {
       >
         {[1, 2, 3].map((item) => (
           <>
-            <div className='w-full flex-[0_0_auto] flex items-center justify-center'>
+            <div key={item} className='w-full flex-[0_0_auto] flex items-center justify-center'>
               <div className='text-9xl'>{item}</div>
             </div>
           </>
@@ -51,9 +51,9 @@ const Projects = () => {
         }}
         className='sticky max-h-[80vh] top-0 flex items-center flex-nowrap overflow-x-auto [&>*:nth-child(even)]:bg-red-500 '
       >
-        {[1, 2, 3].map((item) => (
+        {[4, 5, 6].map((item) => (
           <>
-            <div className='w-full flex-[0_0_auto] flex items-center justify-center'>
+            <div key={item} className='w-full flex-[0_0_auto] flex items-center justify-center'>
               <div className='text-9xl'>{item}</div>
             </div>
           </>

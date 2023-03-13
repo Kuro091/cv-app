@@ -31,7 +31,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       style={{
         background: currentColor?.dark,
       }}
-      className={` text-white ${inter.className} relative`}
+      className={` text-white ${inter.className} relative `}
     >
       <motion.section
         style={{

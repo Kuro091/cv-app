@@ -6,7 +6,7 @@ interface Args extends IntersectionObserverInit {
 }
 
 function useIntersectionObserver(
-  elementRef: RefObject<Element>,
+  element: HTMLElement | null,
   {
     threshold = 0,
     root = null,
@@ -23,7 +23,7 @@ function useIntersectionObserver(
   }
 
   useEffect(() => {
-    const node = elementRef?.current // DOM Ref
+    const node = element // DOM Ref
     const hasIOSupport = !!window.IntersectionObserver
 
     if (!hasIOSupport || frozen || !node) return
@@ -36,7 +36,7 @@ function useIntersectionObserver(
     return () => observer.disconnect()
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [elementRef?.current, JSON.stringify(threshold), root, rootMargin, frozen])
+  }, [element, JSON.stringify(threshold), root, rootMargin, frozen])
 
   return entry
 }

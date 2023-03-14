@@ -1,14 +1,13 @@
-import { useEffect, useLayoutEffect, useRef, useState, useMemo, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { AnimatedContainer } from '../../components/AnimatedComponents/AnimatedContainer';
 import { useColor } from '../../components/hooks/useColor';
 import Layout from '../layout';
-import { MotionValue, motion, useScroll, useTransform } from 'framer-motion';
-import { ProjectContainer } from './ProjectContainer';
-import ProjectItems, { ProjectItem } from './ProjectItems/ProjectItems';
-import { Swiper, SwiperSlide } from 'swiper/react';
 // import required modules
 import { Mousewheel, Pagination, Scrollbar } from 'swiper';
 import { useWindowSize } from 'usehooks-ts';
+import { ProjectContainer } from '../../components/projects/ProjectContainer';
+import { ProjectItems } from '../../components/projects/ProjectItems';
+import { ProjectItem } from '../../components/projects/ProjectItems/ProjectItems';
 
 export enum ScrollDirection {
   DOWN,

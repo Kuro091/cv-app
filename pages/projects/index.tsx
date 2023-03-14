@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, useMemo, useCallback } from 'react';
 import { AnimatedContainer } from '../../components/AnimatedComponents/AnimatedContainer';
 import { useColor } from '../../components/hooks/useColor';
 import Layout from '../layout';
@@ -6,6 +6,10 @@ import { MotionValue, motion, useScroll, useTransform } from 'framer-motion';
 import useIntersectionObserver from '../../components/hooks/useIntersectionObserver';
 import { ProjectContainer } from './ProjectContainer';
 import ProjectItems, { ProjectItem } from './ProjectItems/ProjectItems';
+import { Swiper, SwiperSlide } from 'swiper/react';
+// import required modules
+import { Mousewheel, Pagination, Scrollbar } from 'swiper';
+import { useWindowSize } from 'usehooks-ts';
 
 export enum ScrollDirection {
   DOWN,
@@ -66,11 +70,6 @@ const personalProjects: ProjectItem[] = [
   },
 ];
 
-function isElementInViewport(el: HTMLElement) {
-  const rect = el.getBoundingClientRect();
-  return rect.top <= 0 && rect.bottom > document.documentElement.clientHeight;
-}
-
 /*
   Horizontal Section must be structured like this
   make sure changes in ProjectItem are reflected here
@@ -86,7 +85,16 @@ function isElementInViewport(el: HTMLElement) {
 const Projects = () => {
   const { currentColor } = useColor();
   const containerRef = useRef<Array<HTMLElement | null>>([]);
-  const [elementOnScreen, setElementOnScreen] = useState<HTMLElement | null>(null);
+  const { height: windowHeight } = useWindowSize();
+
+  const isElementInViewport = useCallback(
+    (el: HTMLElement) => {
+      const rect = el.getBoundingClientRect();
+      console.log(rect.top <= 0 && rect.bottom > windowHeight);
+      return rect.top <= 0 && rect.bottom > windowHeight;
+    },
+    [windowHeight]
+  );
 
   useEffect(() => {
     if (containerRef.current) {
@@ -104,14 +112,6 @@ const Projects = () => {
       const containerInViewPort = containerRef.current.find((_container) => {
         const container = _container!;
         const isVisible = isElementInViewport(container);
-        // if (!isVisible) {
-        //   const containerWidth = container.offsetTop + container.offsetWidth;
-        //   if (containerWidth < window.pageYOffset) {
-        //     container.children[0].scrollLeft = containerWidth;
-        //   } else if (container.offsetTop < window.pageYOffset) {
-        //     container.children[0].scrollLeft = 0;
-        //   }
-        // }
         return isVisible;
       });
       if (containerInViewPort) {
@@ -133,7 +133,7 @@ const Projects = () => {
     return () => {
       window.removeEventListener('scroll', () => {});
     };
-  }, []);
+  }, [isElementInViewport]);
 
   return (
     <Layout>
@@ -145,8 +145,8 @@ const Projects = () => {
           Projects
         </AnimatedContainer>
       </section>
-      <section className='h-96 flex items-center justify-center'>Vertical section</section>
 
+      <section className='h-96 flex items-center justify-center'>Vertical section</section>
       <ProjectContainer
         ref={(el) => {
           if (el && containerRef.current) containerRef.current[0] = el;
@@ -154,7 +154,6 @@ const Projects = () => {
       >
         <ProjectItems projects={contractedProjects}></ProjectItems>
       </ProjectContainer>
-
       <section className='h-96 flex items-center justify-center'>Vertical Section</section>
       <ProjectContainer
         ref={(el) => {

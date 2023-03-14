@@ -7,7 +7,7 @@ interface ProjectContainerProps {
 const ProjectContainer = forwardRef<HTMLElement, ProjectContainerProps>(({ children }, ref) => {
   return (
     <section ref={ref}>
-      <main className='sticky top-0 flex items-center flex-nowrap overflow-x-hidden [&>*:nth-child(odd)]:bg-pink-500'>
+      <main className='sticky top-0 flex items-center flex-nowrap overflow-hidden [&>*:nth-child(odd)]:bg-deep-orange-200'>
         {children}
       </main>
     </section>

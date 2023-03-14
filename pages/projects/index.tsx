@@ -3,7 +3,6 @@ import { AnimatedContainer } from '../../components/AnimatedComponents/AnimatedC
 import { useColor } from '../../components/hooks/useColor';
 import Layout from '../layout';
 import { MotionValue, motion, useScroll, useTransform } from 'framer-motion';
-import useIntersectionObserver from '../../components/hooks/useIntersectionObserver';
 import { ProjectContainer } from './ProjectContainer';
 import ProjectItems, { ProjectItem } from './ProjectItems/ProjectItems';
 import { Swiper, SwiperSlide } from 'swiper/react';

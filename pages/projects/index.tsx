@@ -1,13 +1,12 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { AnimatedContainer } from '../../components/AnimatedComponents/AnimatedContainer';
 import { useColor } from '../../components/hooks/useColor';
 import Layout from '../layout';
-// import required modules
-import { Mousewheel, Pagination, Scrollbar } from 'swiper';
-import { useWindowSize } from 'usehooks-ts';
+import { useDebounce, useWindowSize } from 'usehooks-ts';
 import { ProjectContainer } from '../../components/projects/ProjectContainer';
 import { ProjectItems } from '../../components/projects/ProjectItems';
 import { ProjectItem } from '../../components/projects/ProjectItems/ProjectItems';
+import { useScroll } from 'framer-motion';
 
 export enum ScrollDirection {
   DOWN,
@@ -84,11 +83,10 @@ const Projects = () => {
   const { currentColor } = useColor();
   const containerRef = useRef<Array<HTMLElement | null>>([]);
   const { height: windowHeight } = useWindowSize();
-
+  const { scrollY, scrollYProgress } = useScroll();
   const isElementInViewport = useCallback(
     (el: HTMLElement) => {
       const rect = el.getBoundingClientRect();
-      console.log(rect.top <= 0 && rect.bottom > windowHeight);
       return rect.top <= 0 && rect.bottom > windowHeight;
     },
     [windowHeight]
@@ -107,11 +105,17 @@ const Projects = () => {
 
   useEffect(() => {
     const onScroll = (e: Event) => {
+      const direction =
+        scrollYProgress.getPrevious() < scrollYProgress.get()
+          ? ScrollDirection.DOWN
+          : ScrollDirection.UP;
+
       const containerInViewPort = containerRef.current.find((_container) => {
         const container = _container!;
         const isVisible = isElementInViewport(container);
         return isVisible;
       });
+
       if (containerInViewPort) {
         const isPlaceHolderBelowTop =
           containerInViewPort.offsetTop < document.documentElement.scrollTop;
@@ -119,10 +123,16 @@ const Projects = () => {
           containerInViewPort.offsetTop + containerInViewPort.offsetHeight >
           document.documentElement.scrollTop;
         const g_canScrollHorizontally = isPlaceHolderBelowTop && isPlaceHolderBelowBottom;
+        console.log('isPlaceHolderBelowTop', isPlaceHolderBelowTop);
+        console.log('isPlaceHolderBelowBottom', isPlaceHolderBelowBottom);
 
         if (g_canScrollHorizontally) {
-          const pxToScroll = window.scrollY - containerInViewPort.offsetTop;
-          containerInViewPort.children[0].scrollLeft = pxToScroll * 3;
+          const length = containerInViewPort.children[0].childNodes.length;
+
+          const pxToScroll = (window.scrollY - containerInViewPort.offsetTop) / (length + 1);
+          console.log(pxToScroll);
+          containerInViewPort.children[0].scrollLeft +=
+            direction === ScrollDirection.DOWN ? 30 : -30;
         }
       }
     };
@@ -131,7 +141,7 @@ const Projects = () => {
     return () => {
       window.removeEventListener('scroll', () => {});
     };
-  }, [isElementInViewport]);
+  }, [isElementInViewport, scrollYProgress]);
 
   return (
     <Layout>

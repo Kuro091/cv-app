@@ -57,7 +57,7 @@ const MenuItem = ({
           background: '#ffffff',
           color: currentColor?.dark,
         }}
-        className='flex justify-end my-10 p-10 pl-40 lg:self-end lg:justify-end lg:w-[25rem] lg:pr-10 lg:mr-5 rounded-3xl'
+        className='flex justify-end my-10 p-10 md:pl-40 lg:self-end lg:justify-end lg:w-[25rem] lg:pr-10 lg:mr-5 rounded-3xl'
         onClick={() => {
           setCurrentColor(color);
           onClick && onClick();
@@ -86,7 +86,7 @@ const AnimatedMenuItems = ({ items, onItemClick }: AnimatedMenuItemsProps) => {
   return (
     <motion.ul
       variants={variants}
-      className='flex flex-col lg:pt-40 select-none pl-20 pr-10 items-end lg:gap-y-5 text-6xl lg:text-7xl font-extrabold cursor-pointer'
+      className='flex flex-col lg:pt-40 select-none md:pl-20 pr-10 items-end lg:gap-y-5 text-6xl lg:text-7xl font-extrabold cursor-pointer'
     >
       {items.map((item, index) => {
         const color = _colorMap[index as keyof typeof _colorMap];

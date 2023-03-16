@@ -83,11 +83,12 @@ const Projects = () => {
   const { currentColor } = useColor();
   const containerRef = useRef<Array<HTMLElement | null>>([]);
   const { height: windowHeight } = useWindowSize();
-  const { scrollY, scrollYProgress } = useScroll();
+
   const isElementInViewport = useCallback(
     (el: HTMLElement) => {
       const rect = el.getBoundingClientRect();
-      return rect.top <= 0 && rect.bottom > windowHeight;
+
+      return rect.top <= 0 && rect.bottom >= windowHeight;
     },
     [windowHeight]
   );
@@ -96,23 +97,27 @@ const Projects = () => {
     if (containerRef.current) {
       containerRef.current.forEach((container) => {
         if (container) {
-          const stickyContainerHeight = container!.offsetWidth + window.innerHeight;
+          const stickyContainerHeight =
+            (container.children[0] as HTMLElement).offsetWidth + window.innerHeight;
           container.setAttribute('style', 'height: ' + stickyContainerHeight + 'px');
         }
       });
     }
-  }, []);
+  }, [windowHeight]);
 
   useEffect(() => {
     const onScroll = (e: Event) => {
-      const direction =
-        scrollYProgress.getPrevious() < scrollYProgress.get()
-          ? ScrollDirection.DOWN
-          : ScrollDirection.UP;
-
       const containerInViewPort = containerRef.current.find((_container) => {
         const container = _container!;
         const isVisible = isElementInViewport(container);
+        if (!isVisible) {
+          const containerWidth = container.offsetTop + container.offsetWidth;
+          if (containerWidth < window.pageYOffset) {
+            // container.children[0].scrollLeft = containerWidth;
+          } else if (container.offsetTop < window.pageYOffset) {
+            container.children[0].scrollLeft = 0;
+          }
+        }
         return isVisible;
       });
 
@@ -123,25 +128,19 @@ const Projects = () => {
           containerInViewPort.offsetTop + containerInViewPort.offsetHeight >
           document.documentElement.scrollTop;
         const g_canScrollHorizontally = isPlaceHolderBelowTop && isPlaceHolderBelowBottom;
-        console.log('isPlaceHolderBelowTop', isPlaceHolderBelowTop);
-        console.log('isPlaceHolderBelowBottom', isPlaceHolderBelowBottom);
 
         if (g_canScrollHorizontally) {
-          const length = containerInViewPort.children[0].childNodes.length;
-
-          const pxToScroll = (window.scrollY - containerInViewPort.offsetTop) / (length + 1);
-          console.log(pxToScroll);
-          containerInViewPort.children[0].scrollLeft +=
-            direction === ScrollDirection.DOWN ? 30 : -30;
+          const pxToScroll = window.pageYOffset - containerInViewPort.offsetTop;
+          containerInViewPort.children[0].scrollLeft = pxToScroll * 3;
         }
       }
     };
     window.addEventListener('scroll', onScroll);
 
     return () => {
-      window.removeEventListener('scroll', () => {});
+      window.removeEventListener('wheel', () => {});
     };
-  }, [isElementInViewport, scrollYProgress]);
+  }, [isElementInViewport]);
 
   return (
     <Layout>

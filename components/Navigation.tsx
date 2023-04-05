@@ -2,9 +2,9 @@ import { AnimatedMenuItems } from './AnimatedComponents/AnimatedMenu/AnimatedMen
 import { FC, memo } from 'react';
 
 const menuItems = [
-  { name: 'Home', link: '/' },
-  { name: 'About', link: '/about' },
-  { name: 'Projects', link: '/projects' },
+  { name: "These doesn't actually navigate anywhere", link: '/' },
+  { name: 'But they still look cool as a menu navigation', link: '/' },
+  { name: 'So I kinda left them here', link: '/' },
 ];
 
 const contacts = [

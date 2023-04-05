@@ -26,7 +26,7 @@ const AnimatedCard: FC<AnimatedCardProps> = ({
 
   return (
     // card wrapper
-    <div className={[className, ''].join(' ')} style={{ perspective: 2000 }}>
+    <div className={[className, ''].join(' ')}>
       {/* card */}
       <motion.div
         style={{ x, y, rotateX, rotateY, z: 100, background: cardBackgroundColor }}
@@ -57,7 +57,7 @@ const AnimatedCard: FC<AnimatedCardProps> = ({
         className='m-auto max-w-[20rem] min-h-[25rem] rounded-3xl cursor-grab relative'
       >
         <img className='rounded-t-3xl' src={imgSrc} alt='' draggable={false} />
-        <h1 className='grid place-content-center text-center h-full text-2xl mt-4 font-extrabold'>
+        <h1 className='grid place-content-center text-center h-full text-2xl mt-4 font-extrabold text-white'>
           {title}
           <p className='max-w-[300px] text-xs mb-4 italic'>{subtitle}</p>
         </h1>
@@ -66,7 +66,7 @@ const AnimatedCard: FC<AnimatedCardProps> = ({
             y: -395,
             x: -20,
           }}
-          className='absolute h-full w-full rounded-3xl border-2 border-white'
+          className='absolute h-full w-full rounded-3xl border-2 border-blue-gray-900'
         />
       </motion.div>
     </div>

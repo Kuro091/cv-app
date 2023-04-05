@@ -1,11 +1,11 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
-import { AnimatedContainer } from '../../components/AnimatedComponents/AnimatedContainer';
-import { useColor } from '../../components/hooks/useColor';
-import Layout from '../layout';
+import { AnimatedContainer } from '../AnimatedComponents/AnimatedContainer';
+import { useColor } from '../hooks/useColor';
+import Layout from '../../pages/layout';
 import { useDebounce, useWindowSize } from 'usehooks-ts';
-import { ProjectContainer } from '../../components/projects/ProjectContainer';
-import { ProjectItems } from '../../components/projects/ProjectItems';
-import { ProjectItem } from '../../components/projects/ProjectItems/ProjectItems';
+import { ProjectContainer } from '../projects/ProjectContainer';
+import { ProjectItems } from '../projects/ProjectItems';
+import { ProjectItem } from '../projects/ProjectItems/ProjectItems';
 import { useScroll } from 'framer-motion';
 
 export enum ScrollDirection {
@@ -79,7 +79,7 @@ const personalProjects: ProjectItem[] = [
   </section>
 */
 
-const Projects = () => {
+const ProjectSection = () => {
   const { currentColor } = useColor();
   const containerRef = useRef<Array<HTMLElement | null>>([]);
   const { height: windowHeight } = useWindowSize();
@@ -143,7 +143,7 @@ const Projects = () => {
   }, [isElementInViewport]);
 
   return (
-    <Layout>
+    <section>
       <section className='pt-[7rem] pb-5 px-20 sticky'>
         <AnimatedContainer
           backgroundColor={currentColor?.darker}
@@ -169,8 +169,8 @@ const Projects = () => {
       >
         <ProjectItems projects={personalProjects}></ProjectItems>
       </ProjectContainer>
-    </Layout>
+    </section>
   );
 };
 
-export default Projects;
+export default ProjectSection;

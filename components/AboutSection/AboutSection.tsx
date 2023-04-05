@@ -19,14 +19,14 @@ const About = () => {
         />
 
         <div className='lg:pt-0 lg:px-10 text-justify leading-10'>
-          I'm a full-stack dev (I think), but mainly focus on{' '}
+          I&apos;m a full-stack dev (I think), but mainly focus on
           <span className='font-bold'>web development</span> <br />
-          Frontend stuff I've done includes...
+          Frontend stuff I&apos;ve done includes...
           <span className='font-bold'>ReactJS, NextJS, VueJS, Angular</span>
           <br />
-          Backend stuff I've done includes...
+          Backend stuff I&apos;ve done includes...
           <span className='font-bold'>NodeJs with Express, NestJS, Prisma</span> <br />
-          I'm also familiar with{' '}
+          I&apos;m also familiar with{' '}
           <span className='font-bold'>
             Docker, Kubernetes, or cloud providers like AWS, GCP, Firebase
           </span>

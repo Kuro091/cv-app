@@ -1,7 +1,6 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { AnimatedContainer } from '../AnimatedComponents/AnimatedContainer';
 import { useColor } from '../hooks/useColor';
-import Layout from '../../pages/layout';
 import { useDebounce, useWindowSize } from 'usehooks-ts';
 import { ProjectContainer } from '../projects/ProjectContainer';
 import { ProjectItems } from '../projects/ProjectItems';
@@ -143,7 +142,7 @@ const ProjectSection = () => {
   }, [isElementInViewport]);
 
   return (
-    <section>
+    <>
       <section className='pt-[7rem] pb-5 px-20 sticky'>
         <AnimatedContainer
           backgroundColor={currentColor?.darker}
@@ -169,7 +168,7 @@ const ProjectSection = () => {
       >
         <ProjectItems projects={personalProjects}></ProjectItems>
       </ProjectContainer>
-    </section>
+    </>
   );
 };
 

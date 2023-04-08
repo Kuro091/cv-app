@@ -10,7 +10,19 @@
 
 html,
 body {
-  /* min-width: 100vw; */
+  margin: 0;
+}
+
+#__next {
+  background: red;
+}
+
+html,
+body,
+body > div:first-child,
+div#__next,
+div#__next > div {
+  height: 100%;
 }
 
 a {

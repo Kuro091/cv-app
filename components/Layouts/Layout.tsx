@@ -1,10 +1,9 @@
 import { Duru_Sans } from '@next/font/google';
 import { ReactNode, useState } from 'react';
-import Header from '../components/Header';
-import Background from '../components/Background';
-import Footer from '../components/Footer';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useColor } from '../components/hooks/useColor';
+import { useColor } from '../hooks/useColor';
+import Header from '../Header';
+import Footer from '../Footer';
 
 const inter = Duru_Sans({ weight: ['400'], subsets: ['latin'] });
 
@@ -31,7 +30,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       style={{
         background: currentColor?.dark,
       }}
-      className={` text-white ${inter.className} relative `}
+      className={`h-full text-white ${inter.className} relative `}
     >
       <motion.section
         style={{

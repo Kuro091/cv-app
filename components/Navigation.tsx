@@ -1,5 +1,7 @@
 import { AnimatedMenuItems } from './AnimatedComponents/AnimatedMenu/AnimatedMenuItems';
 import { FC, memo } from 'react';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const menuItems = [
   { name: "These doesn't actually navigate anywhere", link: '/' },
@@ -8,8 +10,16 @@ const menuItems = [
 ];
 
 const contacts = [
-  { name: 'Github', link: '' },
-  { name: 'LinkedIn', link: '' },
+  {
+    name: 'Github',
+    link: 'https://github.com/Kuro091/',
+    icon: <GitHubIcon width={50} height={50} />,
+  },
+  {
+    name: 'LinkedIn',
+    link: 'https://linkedin.com/in/lcminhhp/',
+    icon: <LinkedInIcon width={150} height={150} />,
+  },
   { name: 'Email', link: '' },
 ];
 
@@ -27,7 +37,17 @@ const Navigation: FC<NavigationProps> = ({ onItemClick }) => {
           <p className='text-xl font-semibold mb-5'>(+84) 88 600 2391</p>
           <div className='flex gap-x-3'>
             {contacts.map((contact, index) => (
-              <div key={contact.name} className='w-10 h-10 bg-red-100'></div>
+              <div
+                key={contact.name}
+                className='grid place-content-center cursor-pointer'
+                onClick={() => {
+                  if (contact.link) {
+                    window.open(contact.link, '_blank');
+                  }
+                }}
+              >
+                {contact.icon}
+              </div>
             ))}
           </div>
         </div>

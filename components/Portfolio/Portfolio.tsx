@@ -1,4 +1,5 @@
 const Portfolio = () => {
+  console.log('rendering portfolio');
   return <div>Portfolio</div>;
 };
 

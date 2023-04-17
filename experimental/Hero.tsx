@@ -1,4 +1,4 @@
-import { AnimatedMenuItems } from './AnimatedComponents/AnimatedMenu/AnimatedMenuItems';
+import { AnimatedMenuItems } from '../components/AnimatedComponents/AnimatedMenu/AnimatedMenuItems';
 import AnimatedText from './AnimatedComponents/AnimatedText';
 
 const menuItems = [

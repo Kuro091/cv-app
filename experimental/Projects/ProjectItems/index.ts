@@ -1,1 +1,1 @@
-export {default as  ProjectItems } from './ProjectItems'
+export  { default as  ProjectItems } from './ProjectItems'

@@ -1,11 +1,11 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { AnimatedContainer } from '../AnimatedComponents/AnimatedContainer';
-import { useColor } from '../hooks/useColor';
 import { useDebounce, useWindowSize } from 'usehooks-ts';
-import { ProjectContainer } from '../projects/ProjectContainer';
-import { ProjectItems } from '../projects/ProjectItems';
-import { ProjectItem } from '../projects/ProjectItems/ProjectItems';
+import { ProjectItem } from '../Projects/ProjectItems/ProjectItems';
+import ProjectItems from '../Projects/ProjectItems/ProjectItems';
 import { useScroll } from 'framer-motion';
+import { useColor } from '../../components/hooks/useColor';
+import { ProjectContainer } from '../Projects/ProjectContainer';
 
 export enum ScrollDirection {
   DOWN,

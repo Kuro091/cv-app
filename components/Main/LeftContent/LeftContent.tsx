@@ -3,6 +3,7 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import CakeIcon from '@mui/icons-material/Cake';
 import PinDropIcon from '@mui/icons-material/PinDrop';
 import Button from '@mui/material/Button';
+import Image from 'next/image';
 
 interface LeftContentProps {
   className?: string;
@@ -37,15 +38,14 @@ const LeftContent = ({ className }: LeftContentProps) => {
         className,
       ].join(' ')}
     >
-      <div className='flex flex-col gap-y-2 text-center px-5'>
-        <div
-          className='p-10 aspect-square rounded-2xl object-center'
-          style={{
-            backgroundImage: 'url(/images/cat2.jpg)',
-            backgroundColor: currentColor?.lighter,
-            backgroundSize: 'cover',
-          }}
-        ></div>
+      <div className='flex flex-col items-center gap-y-2 text-center px-5 '>
+        <Image
+          src='/images/cat2.jpg'
+          width={200}
+          height={200}
+          alt='cat2'
+          className='rounded-full mb-5 shadow-xl p-1'
+        />
 
         <div className='text-xl font-semibold'>MINHLC</div>
         <div className='text-sm font-semibold'>Full-stack Developer</div>

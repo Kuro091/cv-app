@@ -7,6 +7,7 @@ const Portfolio = () => {
   const { currentColor } = useColor();
   const projects = useProjects();
 
+  console.log('port renderijo');
   return (
     <>
       <div className='mb-5'>

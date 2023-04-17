@@ -4,9 +4,9 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const menuItems = [
-  { name: "These doesn't actually navigate anywhere", link: '/' },
-  { name: 'But they still look cool as a menu navigation', link: '/' },
-  { name: 'So I kinda left them here', link: '/' },
+  { name: "these doesn't actually navigate anywhere", link: '/' },
+  { name: 'but they still look cool as a menu navigation', link: '/' },
+  { name: 'so I kinda left them here', link: '/' },
 ];
 
 const contacts = [

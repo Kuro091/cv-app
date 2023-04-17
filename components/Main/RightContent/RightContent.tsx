@@ -21,7 +21,11 @@ const TABS = [
   },
 ];
 
-const RightContent = () => {
+interface RightContentProps {
+  className?: string;
+}
+
+const RightContent = ({ className }: RightContentProps) => {
   const { currentIndex, setCurrentIndex, currentItem } = useTabs({
     initialTab: 0,
     allTabs: TABS,
@@ -30,7 +34,12 @@ const RightContent = () => {
   const { currentColor } = useColor();
 
   return (
-    <div className='relative grid grid-cols-1 xl:grid-rows-[100px_5fr] items-start place-content-start bg-gray-200 text-blue-gray-900 rounded-lg rounded-tr-[1.7rem] border-2 border-blue-gray-900 shadow-lg'>
+    <div
+      className={[
+        'relative grid grid-cols-1 xl:grid-rows-[100px_5fr] items-start place-content-start bg-gray-200 text-blue-gray-900 rounded-lg rounded-tr-[1.7rem] border-2 border-blue-gray-900 shadow-lg',
+        className,
+      ].join(' ')}
+    >
       <div
         className='absolute justify-self-end h-fit py-1 px-5 rounded-bl-3xl rounded-tr-3xl translate-x-[0.2px]'
         style={{

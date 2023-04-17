@@ -1,11 +1,14 @@
-import { AnimatedCard } from '../../AnimatedComponents/AnimatedCard';
 import { useColor } from '../../hooks/useColor';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import CakeIcon from '@mui/icons-material/Cake';
 import PinDropIcon from '@mui/icons-material/PinDrop';
 import Button from '@mui/material/Button';
 
-const LeftContent = () => {
+interface LeftContentProps {
+  className?: string;
+}
+
+const LeftContent = ({ className }: LeftContentProps) => {
   const { currentColor } = useColor();
 
   // because we need to re-render them when the color changes
@@ -28,7 +31,12 @@ const LeftContent = () => {
   ];
 
   return (
-    <div className='grid justify-center py-20 bg-gray-200 text-blue-gray-900 rounded-lg border-2 border-blue-gray-900 shadow-lg'>
+    <div
+      className={[
+        'grid justify-center py-20 bg-gray-200 text-blue-gray-900 rounded-lg border-2 border-blue-gray-900 shadow-lg',
+        className,
+      ].join(' ')}
+    >
       <div className='flex flex-col gap-y-2 text-center px-5'>
         <div
           className='p-10 aspect-square rounded-2xl object-center'
@@ -50,7 +58,6 @@ const LeftContent = () => {
                 className='rounded-lg'
                 sx={{
                   borderColor: currentColor?.light,
-                  backgroundColor: currentColor?.dark,
                 }}
               >
                 {item.icon}

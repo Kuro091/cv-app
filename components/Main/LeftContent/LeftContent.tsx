@@ -40,7 +40,7 @@ const LeftContent = ({ className }: LeftContentProps) => {
     >
       <div className='flex flex-col items-center gap-y-2 text-center px-5 '>
         <Image
-          src='/images/cat3.jpg'
+          src='/images/cat3.png'
           width={200}
           height={200}
           alt='avatar'

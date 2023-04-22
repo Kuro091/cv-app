@@ -12,10 +12,22 @@ const downloadFile = () => {
 const Resume = () => {
   return (
     <>
-      Still underconstructing, but here&apos;s a pdf: &nbsp;
-      <Button onClick={downloadFile} variant='outlined'>
-        Get Resume
-      </Button>
+      <div className='grid place-items-center gap-10'>
+        <div>
+          My resume as <span className='font-bold'>PDF</span>
+        </div>
+        <Button
+          sx={{
+            width: 350,
+            height: 200,
+          }}
+          onClick={downloadFile}
+          variant='outlined'
+          className='font-extrabold text-2xl'
+        >
+          Get Resume
+        </Button>
+      </div>
     </>
   );
 };

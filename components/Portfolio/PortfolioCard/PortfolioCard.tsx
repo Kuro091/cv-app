@@ -107,9 +107,11 @@ const PortfolioCard = memo(({ project }: PortfolioCardProps) => {
               <div className='text-5xl font-bold'>{project.title}</div>
               <div className='text-lg normal-case'>{project.detailedDescription}</div>
 
-              <Button variant='outlined'>
-                <Link href={project.projectUrl || ''}>Live URL</Link>
-              </Button>
+              <Link href={project.projectUrl || ''} target='_blank'>
+                <Button variant='outlined' className='w-full'>
+                  Live URL
+                </Button>
+              </Link>
               <div className='mt-5 flex gap-2 flex-wrap'>
                 {project.techStack?.map((tech) => (
                   <Chip key={tech} label={tech} />

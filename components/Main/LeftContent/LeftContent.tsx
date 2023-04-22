@@ -4,6 +4,8 @@ import CakeIcon from '@mui/icons-material/Cake';
 import PinDropIcon from '@mui/icons-material/PinDrop';
 import Button from '@mui/material/Button';
 import Image from 'next/image';
+import contacts from '../../../data/contacts';
+import Link from 'next/link';
 
 interface LeftContentProps {
   className?: string;
@@ -44,12 +46,22 @@ const LeftContent = ({ className }: LeftContentProps) => {
           width={200}
           height={200}
           alt='avatar'
-          className='rounded-full mb-5 shadow-xl p-1'
+          className='object-cover aspect-square rounded-full mb-5 shadow-xl p-1'
         />
 
         <div className='text-xl font-semibold'>MINHLC</div>
         <div className='text-sm font-semibold'>Full-stack Developer</div>
-
+        <div className='flex gap-x-3'>
+          {contacts.map((contact, index) => (
+            <Link
+              href={contact.link}
+              key={contact.name}
+              className='grid place-content-center cursor-pointer'
+            >
+              {contact.icon}
+            </Link>
+          ))}
+        </div>
         <div className='flex flex-col gap-5 mt-10'>
           {items.map((item) => (
             <div key={item.name} className='flex-1 flex gap-10 items-center'>

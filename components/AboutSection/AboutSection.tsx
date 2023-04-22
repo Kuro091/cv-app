@@ -4,6 +4,9 @@ import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import ApprovalIcon from '@mui/icons-material/Approval';
 import CropRotateIcon from '@mui/icons-material/CropRotate';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+import badges from '../../data/badges';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const About = () => {
   const { currentColor } = useColor();
@@ -59,6 +62,15 @@ const About = () => {
               description={detail.description}
             />
           ))}
+        </div>
+        <div className='flex justify-center flex-wrap gap-2 mt-10 ml-auto'>
+          {badges.map((badge) => {
+            return (
+              <Link href={badge.link} key={badge.title}>
+                <Image alt={badge.title} src={badge.imgUrl} width={150} height={150} />
+              </Link>
+            );
+          })}
         </div>
       </div>
     </>

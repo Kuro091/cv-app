@@ -1,10 +1,11 @@
 import Image from 'next/image';
-import { Project } from '../useProjects';
+import { Project } from '../hooks/useProjects';
 import { memo, useState } from 'react';
 import { useColor } from '../../hooks/useColor';
 import { Modal } from '../../Modal';
 import { Chip, Button, Box } from '@mui/material';
 import Link from 'next/link';
+import Carousel from 'react-material-ui-carousel';
 
 interface PortfolioCardProps {
   project: Project;
@@ -35,18 +36,19 @@ const PortfolioCard = memo(({ project }: PortfolioCardProps) => {
         onClick={() => setOpen(true)}
       >
         <div
-          className='relative bg-gray-900 rounded-tr-lg rounded-tl-lg overflow-hidden'
           style={{
             width: '100%',
             height: hover ? '0%' : '75%',
-            backgroundImage: `url(${project.imgUrl})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
             transition: 'height 0.2s ease-in-out',
           }}
+          className='relative bg-gray-900 overflow-hidden'
         >
-          {/* <Image className='object-cover' alt='' fill src={project.imgUrl} /> */}
+          <Image
+            className='object-cover rounded-tr-lg rounded-tl-lg'
+            fill
+            alt={project.title}
+            src={project.imgUrl}
+          />
         </div>
         <div
           className={`w-full flex items-start justify-start row-span-2  bg-white ${
@@ -82,20 +84,26 @@ const PortfolioCard = memo(({ project }: PortfolioCardProps) => {
       </Box>
       {open && (
         <Modal open={open} handleClose={() => setOpen(false)}>
-          <div className='flex flex-col lg:flex-row items-center justify-center h-[80vh] gap-x-5'>
-            <div className='relative bg-gray-900 rounded-lg overflow-hidden w-full h-full flex-1'>
-              <Image
-                className='object-contain'
-                alt=''
-                fill
-                src={project.imgUrl}
-                style={{
-                  filter: hover ? 'brightness(0.5)' : 'brightness(1)',
-                  scale: hover ? '1.1' : '1',
-                }}
-              />
+          <div className='flex flex-col items-center justify-center h-[80vh] gap-5'>
+            <div className='relative bg-gray-900 rounded-lg overflow-hidden h-3/4 w-full'>
+              <Carousel className='w-full h-full' navButtonsAlwaysVisible animation='slide'>
+                {project.images &&
+                  project.images.map((img, index) => (
+                    <Image
+                      key={index}
+                      className='object-contain'
+                      alt=''
+                      fill
+                      src={img}
+                      style={{
+                        filter: hover ? 'brightness(0.5)' : 'brightness(1)',
+                        scale: hover ? '1.1' : '1',
+                      }}
+                    />
+                  ))}
+              </Carousel>
             </div>
-            <div className='flex flex-col flex-1 gap-y-4'>
+            <div className='flex flex-col h-1/4 gap-y-4  w-full'>
               <div className='text-5xl font-bold'>{project.title}</div>
               <div className='text-lg normal-case'>{project.detailedDescription}</div>
 

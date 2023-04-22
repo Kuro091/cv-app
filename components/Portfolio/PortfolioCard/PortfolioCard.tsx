@@ -9,9 +9,10 @@ import Carousel from 'react-material-ui-carousel';
 
 interface PortfolioCardProps {
   project: Project;
+  className?: string;
 }
 
-const PortfolioCard = memo(({ project }: PortfolioCardProps) => {
+const PortfolioCard = memo(({ project, className }: PortfolioCardProps) => {
   const [hover, setHover] = useState(false);
   const { currentColor } = useColor();
   const [open, setOpen] = useState(false);
@@ -23,7 +24,7 @@ const PortfolioCard = memo(({ project }: PortfolioCardProps) => {
           display: 'flex',
           flexDirection: 'column',
           height: '20rem',
-          width: '24rem',
+          width: '100%',
           padding: 0,
           borderRadius: '0.5rem',
           filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',

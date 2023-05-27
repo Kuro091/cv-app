@@ -1,5 +1,6 @@
 import { Html, Head, Main, NextScript } from 'next/document';
 import Script from 'next/script';
+import * as gtag from '../lib/gtag';
 
 export default function Document() {
   return (
@@ -11,19 +12,23 @@ export default function Document() {
         />
         <Script
           strategy='afterInteractive'
-          src='https://www.googletagmanager.com/gtag/js?id=G-G95D14B3PE'
+          src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_MEASUREMENT_ID}`}
         />
-        <Script defer id='google-analytics' strategy='afterInteractive'>
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-G95D14B3PE', {
-              page_path: window.location.pathname,
-            });
-              
-          `}
-        </Script>
+        <Script
+          defer
+          id='google-analytics'
+          strategy='afterInteractive'
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${gtag.GA_MEASUREMENT_ID}', {
+            page_path: window.location.pathname,
+          });
+        `,
+          }}
+        ></Script>
       </Head>
       <body>
         <Main />

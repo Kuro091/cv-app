@@ -1,4 +1,5 @@
 import { Button } from '@mui/material';
+import dynamic from 'next/dynamic';
 
 const downloadFile = () => {
   const link = document.createElement('a');
@@ -16,15 +17,7 @@ const Resume = () => {
         <div>
           My resume as <span className='font-bold'>PDF</span>
         </div>
-        <Button
-          sx={{
-            width: 350,
-            height: 200,
-          }}
-          onClick={downloadFile}
-          variant='outlined'
-          className='font-extrabold text-2xl'
-        >
+        <Button onClick={downloadFile} variant='outlined' className='font-extrabold text-2xl'>
           Get Resume
         </Button>
       </div>

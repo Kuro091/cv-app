@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .animated {
+    @apply duration-1000;
+    animation-fill-mode: both;
+  }
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

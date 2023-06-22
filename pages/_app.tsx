@@ -3,25 +3,22 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider } from '@material-tailwind/react';
 import { AnimatePresence } from 'framer-motion';
 import { Router } from 'next/router';
-import { useEffect, useState } from 'react';
 import * as gtag from '../lib/gtag';
-import Script from 'next/script';
+import { GTMProvider, useGTMDispatch } from '@elgorditosalsero/react-gtm-hook';
+import { ISnippetsParams } from '@elgorditosalsero/react-gtm-hook/dist/models/GoogleTagManager';
+
+const gtmParams: ISnippetsParams = {
+  id: gtag.NEXT_PUBLIC_GTM_ID || '',
+  environment: {
+    gtm_auth: gtag.NEXT_PUBLIC_GTM_AUTH || '',
+    gtm_preview: gtag.NEXT_PUBLIC_GTM_PREVIEW || '',
+  },
+};
 
 export default function App({ Component, pageProps, router }: AppProps) {
-  useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      gtag.pageview(url);
-    };
-
-    Router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      Router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, []);
-
   return (
     <>
-      <Script
+      {/* <Script
         strategy='afterInteractive'
         src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_MEASUREMENT_ID}`}
       />
@@ -34,17 +31,19 @@ export default function App({ Component, pageProps, router }: AppProps) {
             page_path: window.location.pathname,
           });
         `}
-      </Script>
-      <ThemeProvider>
-        <AnimatePresence
-          mode='wait'
-          onExitComplete={() => {
-            window.scrollTo(0, 0);
-          }}
-        >
-          <Component key={router.pathname} {...pageProps} />
-        </AnimatePresence>
-      </ThemeProvider>
+      </Script> */}
+      <GTMProvider state={gtmParams}>
+        <ThemeProvider>
+          <AnimatePresence
+            mode='wait'
+            onExitComplete={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
+            <Component key={router.pathname} {...pageProps} />
+          </AnimatePresence>
+        </ThemeProvider>
+      </GTMProvider>
     </>
   );
 }

@@ -1,8 +1,27 @@
 import Head from 'next/head';
 import Main from '../components/Main/Main';
 import { Layout } from '../components/Layouts';
-
+import { useEffect } from 'react';
+import { useGTMDispatch } from '@elgorditosalsero/react-gtm-hook';
+import Router from 'next/router';
 export default function Home() {
+  const sendDataToGTM = useGTMDispatch();
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      // gtag.pageview(url);
+      sendDataToGTM({
+        event: 'pageview',
+        pagePath: url,
+      });
+    };
+
+    Router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      Router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [sendDataToGTM]);
+
   return (
     <>
       <Head>

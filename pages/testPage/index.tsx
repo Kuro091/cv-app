@@ -1,10 +1,6 @@
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { gsap } from 'gsap';
 import { useEffect, useRef } from 'react';
-import resolveConfig from 'tailwindcss/resolveConfig';
-import tailwindConfig from '../../tailwind.config.js';
-import { useWindowSize } from 'usehooks-ts';
-import Image from 'next/image';
 import { Layout } from '../../components/Layouts/';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -62,9 +58,9 @@ const OrangeSection = () => {
   // Setting up the content markers (p tags)
   // Map left content to right content, essentially
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      window.location.reload();
-    });
+    // window.addEventListener('resize', () => {
+    //   window.location.reload();
+    // });
     contentMarkers.current = gsap.utils.toArray<ContentMarker>('.contentMarker');
 
     contentMarkers?.current.forEach((marker) => {
@@ -103,7 +99,7 @@ const OrangeSection = () => {
     });
 
     return () => {
-      ctx.kill();
+      ctx.revert();
     };
   }, []);
 
@@ -112,7 +108,7 @@ const OrangeSection = () => {
       <div
         ref={contentToPin}
         id='left-content'
-        className=' bg-pink-200 max-h-screen translate-x-0 flex flex-col relative [&>*]:absolute [&>*]:opacity-0 [&>*]:invisible'
+        className=' bg-white max-h-screen translate-x-0 flex flex-col justify-center relative [&>*]:absolute [&>*]:opacity-0 [&>*]:invisible'
       >
         {/*eslint-disable @next/next/no-img-element  */}
         <img id='img1' src='https://placekitten.com/1300/1300?image=1' alt='kitty' />

@@ -13,10 +13,14 @@ const Tabs = ({ tabs, activeTab, onTabClick }: TabsProps) => {
         {tabs.map((tab, index) => (
           <li key={index} className='inline-block px-5 py-4 text-white rounded-t-lg'>
             <a
-              href='#'
-              onClick={() => onTabClick(index)}
+              onClick={(e) => {
+                e.preventDefault();
+                onTabClick(index);
+              }}
               aria-current='page'
-              className={`py-2 ${activeTab === index && 'font-bold  border-b-4  border-gray-200'}`}
+              className={`py-2 cursor-pointer ${
+                activeTab === index && 'font-bold  border-b-4  border-gray-200'
+              }`}
             >
               {tab.name}
             </a>

@@ -19,12 +19,12 @@ function Card({ icon, description, title }: CardProps) {
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
-        <div className='pl-5 cursor-pointer flex items-center text-left gap-2 h-24 2xl:h-16'>
+        <div className='2xl:h-16 flex items-center h-24 gap-2 pl-5 text-left cursor-pointer'>
           <div className=''>{icon}</div>
-          <div className='font-bold text-xl'>{title}</div>
+          <div className='text-xl font-bold'>{title}</div>
         </div>
           <motion.div
-            className='py-2 px-6 bg-gray-100'
+            className='px-6 py-2 bg-gray-100'
             initial={{
               opacity: 0,
               y: -100,
@@ -35,7 +35,7 @@ function Card({ icon, description, title }: CardProps) {
               type: 'spring',
             }}
           >
-            <p className='text-gray-700 text-left'>{description}</p>
+            <p className='text-left text-gray-700'>{description}</p>
           </motion.div>
       </div>
     </>

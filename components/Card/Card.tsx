@@ -13,8 +13,8 @@ function Card({ icon, description, title }: CardProps) {
   return (
     <>
       <div
-        className={`grid items-center w-full max-w-xs mx-auto rounded overflow-hidden shadow-lg bg-white ${
-          isHovering ? 'h-fit' : 'h-24 2xl:h-16'
+        className={`grid items-center w-full max-w-xs mx-auto rounded overflow-hidden shadow-lg  ${
+          isHovering ? 'h-fit bg-gray-100' : 'h-24 2xl:h-16 bg-white'
         }`}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
@@ -23,7 +23,6 @@ function Card({ icon, description, title }: CardProps) {
           <div className=''>{icon}</div>
           <div className='font-bold text-xl'>{title}</div>
         </div>
-        {isHovering && (
           <motion.div
             className='py-2 px-6 bg-gray-100'
             initial={{
@@ -38,7 +37,6 @@ function Card({ icon, description, title }: CardProps) {
           >
             <p className='text-gray-700 text-left'>{description}</p>
           </motion.div>
-        )}
       </div>
     </>
   );

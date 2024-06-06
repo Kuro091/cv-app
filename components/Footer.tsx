@@ -11,7 +11,7 @@ const Footer = () => {
         borderColor: currentColor?.lightest,
       }}
     >
-      <div className='text-xs font-semibold'>Copyright 2023 ©Kuro091</div>
+      <div className='text-xs font-semibold'>Copyright 2024 ©Kuro091</div>
     </section>
   );
 };

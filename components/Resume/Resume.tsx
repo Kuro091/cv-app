@@ -1,6 +1,8 @@
 import { Button } from '@mui/material';
 import dynamic from 'next/dynamic';
 import { useGTMDispatch } from '@elgorditosalsero/react-gtm-hook';
+import Link from 'next/link';
+import React from 'react';
 
 const downloadFile = (callback: () => void) => {
   const link = document.createElement('a');
@@ -26,12 +28,14 @@ const Resume = () => {
 
   return (
     <>
-      <div className='grid place-items-center gap-10'>
-        <div>
-          My resume as <span className='font-bold'>PDF</span>
-        </div>
+      <div className='place-items-center gap-10 grid'>
         <Button onClick={handleDownloadFile} variant='outlined' className='font-extrabold text-2xl'>
-          Get Resume
+          <Link href='/resume.pdf' passHref>
+            View Resume
+          </Link>
+        </Button>
+        <Button onClick={handleDownloadFile} variant='outlined' className='font-extrabold text-2xl'>
+          Download Resume
         </Button>
       </div>
     </>
